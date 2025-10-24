@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Chores Guide Website</title>
+    <link rel="stylesheet" href="./font-awesome/css/font-awesome.css">
+    <style>
+        @font-face {
+            font-family: Poppins;
+            src: url(./fonts/Poppins-Regular.ttf);
+        }
+
+        *{
+            font-family: Poppins, 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+
+        body {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            background-image: url('leaning-equipment-bucket-water-mop.jpg');
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            overflow-y: auto;
+            position: relative;
+
+            margin: 0;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #e0f7fa;
+            transition: background-color 0.5s;
+        }
+
+
+        .login-box {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 320px;
+        }
+
+        h2 {
+            color: #00796b;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        button {
+            width: 95%;
+            padding: 10px;
+            background-color: #00796b;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .landing > button{
+            border: 1px solid rgba(0, 0, 0, 0.5);
+        }
+
+        button:hover {
+            background-color: #00695c;
+            /* font-size: 20px; */
+            /* margin-bottom: 10px; */
+        }
+
+
+        .landing {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+            text-align: center;
+            background-image: url('./background.png');
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            height: max-content;
+            color: black!important;
+
+        }
+
+        .landing h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+            
+
+        }
+
+        .landing p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            background-image: url('./background.png');
+
+        }
+
+        .btn {
+            background-color: white;
+            color: #00796b;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: 0.3s;
+
+        }
+
+        .btn:hover {
+            background-color: #b2ebf2;
+
+        }
+
+
+        .chores-page {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            background-image: url('./background.png');
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        header {
+            background-color: #073138;
+            color: white;
+            padding: 5px;
+            text-align: center;
+            position: relative;
+        }
+
+        nav {
+            background-color: #ffffff;
+            overflow: hidden;
+        }
+
+        nav a {
+            float: left;
+            display: block;
+            color: #073138;
+            background-color: rgba(255, 255, 255, 0.2)!important;
+            border-radius: 5px;
+            border: 1px solid rgba(0, 0, 0, 0.5);
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        .chore {
+            /* background: rgba(109, 224, 245, 0.85); */
+            background-color: #e0f7fa;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .chore h2 {
+            color: #111111;
+        }
+
+        ol {
+            margin-left: 20px;
+        }
+
+        footer {
+            text-align: center;
+            /* background: rgba(109, 224, 245, 0.801); */
+            background-color: #00796b;
+            color: rgba(15, 15, 15, 0.801);
+            padding: 10px;
+            margin-top: 20px;
+        }
+
+
+        .logout-btn {
+            position: absolute;
+            top: 25px;
+            left: 15px;
+            width: max-content;
+            background: none;
+            color: white;
+            border: 1px solid white;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .logout-btn:hover {
+            opacity: 1;
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        #registerForm{
+            display: none;
+        }
+
+        form > p{
+            text-align: left;
+        }
+
+        form > h2{
+            font-size: 1em;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="login-box" id="loginPage">
+        <h2>🏠 Chores Guide</h2>
+        <!-- <hr> -->
+
+        <form id="loginForm">
+            <h2>Login</h2>
+            <input type="text" id="username" placeholder="Username" value="" required><br>
+            <input type="password" id="password" placeholder="Password" value="" required><br>
+            <p>Doesn't have an account yet? <a href="#" onclick="showRegisterForm()">Register</a></p>
+            <button type="submit"> <i class="fa fa-sign-in"></i> Login</button>
+        </form>
+
+        <form  id="registerForm">
+            <h2>Register</h2>
+            <input type="text" id="username1" placeholder="Username" value="" required><br>
+            <input type="password" id="password1" placeholder="Password" value="" required><br>
+            <p>Already have an account? <a href="#" onclick="showLoginForm()">Login</a></p>
+            <button type="submit"> <i class="fa fa-sign-in"></i> Register</button>
+        </form>
+    </div>
+
+
+    <div class="landing" id="landingPage">
+        <h1>Welcome 🧺</h1>
+        <p>Simple steps for a clean and organized home!</p>
+        <button class="btn" onclick="showChoresPage()">🧽 Go to Chores Guide</button>
+    </div>
+
+
+    <div class="chores-page" id="choresPage">
+        <header>
+            <h1>🏡 Chores Guide Website</h1>
+            <button class="logout-btn" onclick="logout()"> <i class="fa fa-sign-out"></i> Logout</button>
+
+        </header>
+
+        <nav>
+            <a href="#laundry">Do Laundry</a>
+            <a href="#cleaning">Clean the House</a>
+            <a href="#dishes">Wash the Dishes</a>
+        </nav>
+
+        <div class="container">
+
+            <!-- Laundry -->
+            <div class="chore" id="laundry">
+                <h2>How to Do Laundry</h2>
+                <ol>
+                    <li>Sort clothes by color (lights, darks, whites).</li>
+                    <li>Check labels for washing instructions.</li>
+                    <li>Load the washing machine (don’t overfill).</li>
+                    <li>Add detergent (and fabric softener if needed).</li>
+                    <li>Select wash settings (temperature, cycle).</li>
+                    <li>Start the machine and wait until it finishes.</li>
+                    <li>Transfer clothes to the dryer (or hang to dry).</li>
+                    <li>Fold and store clean clothes.</li>
+                </ol>
+            </div>
+
+            <!-- Cleaning -->
+            <div class="chore" id="cleaning">
+                <h2>How to Clean the House</h2>
+                <ol>
+                    <li>Declutter – put away items lying around.</li>
+                    <li>Dust surfaces (tables, shelves, furniture).</li>
+                    <li>Sweep or vacuum floors.</li>
+                    <li>Mop floors (for tiled/wooden areas).</li>
+                    <li>Clean windows & mirrors with glass cleaner.</li>
+                    <li>Wipe down kitchen & bathroom counters.</li>
+                    <li>Empty trash bins and replace liners.</li>
+                    <li>Final check – make sure each room looks tidy.</li>
+                </ol>
+            </div>
+
+            <!-- Dishes -->
+            <div class="chore" id="dishes">
+                <h2>How to Wash the Dishes</h2>
+                <ol>
+                    <li>Scrape leftovers into the trash/compost.</li>
+                    <li>Rinse dishes with water.</li>
+                    <li>Fill sink/basin with warm, soapy water.</li>
+                    <li>Wash dishes (start with glasses, then plates, then pots/pans).</li>
+                    <li>Scrub tough stains with a sponge or brush.</li>
+                    <li>Rinse with clean water.</li>
+                    <li>Place on drying rack or wipe dry with a towel.</li>
+                    <li>Put dishes away in the cupboard.</li>
+                </ol>
+            </div>
+
+            <!-- Bathroom Cleaning -->
+<div class="chore" id="bathroom">
+    <h2>How to Clean the Bathroom</h2>
+    <ol>
+        <li>Gather cleaning supplies — toilet cleaner, scrubbing brush, disinfectant, gloves, sponge, and mop.</li>
+        <li>Remove towels, rugs, and personal items from the bathroom.</li>
+        <li>Spray disinfectant or bathroom cleaner on sinks, counters, and the bathtub or shower area.</li>
+        <li>Let the cleaner sit for a few minutes to break down soap scum and grime.</li>
+        <li>Scrub the sink, tub, and shower walls with a sponge or brush.</li>
+        <li>Apply toilet cleaner inside the bowl and scrub with a toilet brush.</li>
+        <li>Wipe mirrors and glass surfaces using glass cleaner and a microfiber cloth.</li>
+        <li>Clean the floor — sweep first, then mop using disinfectant solution.</li>
+</div>
+    
+    <!-- Organize the Closet -->
+<div class="chore" id="closet">
+    <h2>How to Organize the Closet</h2>
+    <ol>
+        <li>Empty the entire closet — take out clothes, shoes, and accessories.</li>
+        <li>Sort items into categories: keep, donate, recycle, or discard.</li>
+        <li>Wipe down shelves, rods, and drawers to remove dust.</li>
+        <li>Group similar items together (shirts, pants, dresses, jackets, etc.).</li>
+        <li>Hang clothes neatly using matching hangers — organize by type or color.</li>
+        <li>Fold and stack items like sweaters, jeans, or t-shirts on shelves.</li>
+        <li>Use boxes or bins for accessories such as belts, scarves, or bags.</li>
+        <li>Place shoes on a shoe rack or in clear boxes at the bottom of the closet.</li>
+    </ol>
+</div>
+   
+    <!-- Feed the Pets -->
+<div class="chore" id="pets">
+    <h2>How to Feed the Pets</h2>
+    <ol>
+        <li>Wash your hands before handling pet food.</li>
+        <li>Gather the necessary items — food, clean bowls, water, and any supplements or treats.</li>
+        <li>Check your pet’s feeding schedule and portion size.</li>
+        <li>Pour the correct amount of food into each pet’s bowl (use measuring cups if needed).</li>
+        <li>Provide fresh, clean water — replace old water if it’s been sitting for a while.</li>
+        <li>If you have multiple pets, ensure each one eats their own food to avoid fights.</li>
+        <li>After they finish eating, wash the bowls and dry them for next use.</li>
+        <li>Give your pet a little affection or playtime after meals!</li>
+    </ol>
+</div>
+
+
+
+        </div>
+
+        <footer>
+            <p>© 2025 Chores Guide Website</p>
+        </footer>
+    </div>
+
+    <script>
+        const loginPage = document.getElementById("loginPage");
+        const landingPage = document.getElementById("landingPage");
+        const choresPage = document.getElementById("choresPage");
+
+        document.getElementById("loginForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            if (username === "Rumphel" && password === "2525") {
+                loginPage.style.display = "none";
+                landingPage.style.display = "flex";
+                document.body.style.backgroundColor = "#e0f7fa";
+            } else {
+                alert("Invalid username or password!");
+            }
+        });
+
+        document.getElementById("registerForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            const username = document.getElementById("username1").value;
+            const password = document.getElementById("password1").value;
+
+            if (username != "" && password != "") {
+                loginPage.style.display = "none";
+                landingPage.style.display = "flex";
+                document.body.style.backgroundColor = "#e0f7fa";
+            } else {
+                alert("Invalid username or password!");
+            }
+        });
+
+        function showChoresPage() {
+            landingPage.style.display = "none";
+            choresPage.style.display = "flex";
+        }
+
+        function logout() {
+            choresPage.style.display = "none";
+            landingPage.style.display = "none";
+            loginPage.style.display = "block";
+            document.body.style.backgroundColor = "#e0f7fa";
+        }
+
+        function showLoginForm(){
+            let registerForm = document.getElementById('registerForm');
+            let loginForm = document.getElementById('loginForm');
+
+            loginForm.style.display = "block";
+            registerForm.style.display = "none";
+        }
+
+        function showRegisterForm(){
+            let registerForm = document.getElementById('registerForm');
+            let loginForm = document.getElementById('loginForm');
+
+            registerForm.style.display = "block";
+            loginForm.style.display = "none";
+        }
+
+        
+    </script>
+
+</body>
+
+</html>
